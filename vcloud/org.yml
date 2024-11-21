@@ -1,0 +1,22 @@
+---
+- name: Crear una organización en vCloud
+  hosts: localhost
+  gather_facts: false  # No es necesario recopilar información del sistema local
+  vars:
+    vcd_host: "vcloud.example.com"
+    vcd_username: "admin"
+    vcd_password: "admin_password"
+    vcd_org: "System"  # La organización en la que se autentica el usuario
+    vcd_verify_ssl: false  # Cambiar a true si se usa SSL y se quiere verificar el certificado
+  tasks:
+    - name: Crear la organización en vCloud
+      community.vmware.vcd_org:
+        hostname: "{{ vcd_host }}"
+        username: "{{ vcd_username }}"
+        password: "{{ vcd_password }}"
+        org: "{{ vcd_org }}"
+        verify_ssl_certs: "{{ vcd_verify_ssl }}"
+        org_name: "test_org2"
+        full_name: "test_org2"
+        is_enabled: false
+        state: present
