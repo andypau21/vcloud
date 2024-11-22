@@ -1,8 +1,8 @@
 ---
 - name: Crear una organización en vCloud desde AWX
-#  hosts: localhost
-#  gather_facts: false
-#  vars:
+  hosts: localhost
+  gather_facts: false
+  vars:
     vcd_host: "{{ vcloud_host }}"       # Definido en las credenciales de AWX
     vcd_username: "{{ vcloud_username }}"  # Definido en las credenciales de AWX
     vcd_password: "{{ vcloud_password }}"  # Definido en las credenciales de AWX
@@ -20,3 +20,4 @@
         full_name: "{{ full_name }}"  # Parámetro dinámico
         is_enabled: false
         state: present
+
