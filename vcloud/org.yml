@@ -9,6 +9,17 @@
     vcd_org: "{{ vcloud_org }}"
     vcd_verify_ssl: false
   tasks:
+    - name: Mostar variables depuradas
+      debug:
+        msg:
+          - "vcd_host: {{ vcd_host }}"
+          - "vcd_username: {{ vcd_username }}"
+          - "vcd_password: **********"
+          - "vcd_org: {{ vcd_org }}"
+          - "vcd_verify_ssl: {{ vcd_verify_ssl }}"
+          - "org_name: {{ org_name }}"
+          - "full_name: {{ full_name }}"
+
     - name: Crear la organización en vCloud
       community.vmware.vcd_org:
         hostname: "{{ vcd_host }}"
