@@ -16,7 +16,7 @@
         password: "{{ vcd_password }}"
         org: "{{ vcd_org }}"
         verify_ssl_certs: "{{ vcd_verify_ssl }}"
-        org_name: "test_org"
-        full_name: "test_org"
+        org_name: "{{ org_name }}"  # Parámetro dinámico
+        full_name: "{{ full_name }}"  # Parámetro dinámico
         is_enabled: false
         state: present
