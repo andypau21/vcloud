@@ -20,4 +20,3 @@
         full_name: "{{ full_name }}"
         is_enabled: false
         state: present
-
