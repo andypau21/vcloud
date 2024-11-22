@@ -3,11 +3,11 @@
   hosts: localhost
   gather_facts: false
   vars:
-    vcd_host: "{{ vcloud_host }}"       # Definido en las credenciales de AWX
-    vcd_username: "{{ vcloud_username }}"  # Definido en las credenciales de AWX
-    vcd_password: "{{ vcloud_password }}"  # Definido en las credenciales de AWX
-    vcd_org: "{{ vcloud_org }}"         # Opcional, por defecto "System"
-    vcd_verify_ssl: false               # Cambiar si necesitas verificar SSL
+    vcd_host: "{{ vcloud_host }}"
+    vcd_username: "{{ vcloud_username }}"
+    vcd_password: "{{ vcloud_password }}"
+    vcd_org: "{{ vcloud_org }}"
+    vcd_verify_ssl: false
   tasks:
     - name: Crear la organización en vCloud
       community.vmware.vcd_org:
@@ -16,8 +16,8 @@
         password: "{{ vcd_password }}"
         org: "{{ vcd_org }}"
         verify_ssl_certs: "{{ vcd_verify_ssl }}"
-        org_name: "{{ org_name }}"  # Parámetro dinámico
-        full_name: "{{ full_name }}"  # Parámetro dinámico
+        org_name: "{{ org_name }}"
+        full_name: "{{ full_name }}"
         is_enabled: false
         state: present
 
