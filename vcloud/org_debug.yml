@@ -1,0 +1,36 @@
+---
+- name: Crear una organización en vCloud desde AWX
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    # Credenciales se extraen desde AWX
+    vcloud_host: "{{ vcloud_host }}"
+    vcloud_username: "{{ vcloud_username }}"
+    vcloud_password: "{{ vcloud_password }}"
+    vcloud_verify_ssl: false
+
+    # Variables de entrada desde Extra Vars
+    org_name: "{{ org_name }}"
+    full_name: "{{ full_name }}"
+
+  tasks:
+    - name: Validar la conexión a vCloud
+      debug:
+        msg: "Conectando a vCloud en {{ vcloud_host }} con el usuario {{ vcloud_username }}"
+
+    - name: Crear la organización en vCloud
+      community.vmware.vcd_org:
+        hostname: "{{ vcloud_host }}"
+        username: "{{ vcloud_username }}"
+        password: "{{ vcloud_password }}"
+        verify_ssl_certs: "{{ vcloud_verify_ssl }}"
+        org_name: "{{ org_name }}"
+        full_name: "{{ full_name }}"
+        is_enabled: true
+        state: present
+
+    - name: Confirmar la creación de la organización
+      debug:
+        msg: "Organización '{{ org_name }}' creada exitosamente en {{ vcloud_host }}."
+
