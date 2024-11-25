@@ -1,0 +1,44 @@
+---
+- name: Debug de credenciales y variables en vCloud desde AWX
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    # Credenciales extraídas desde AWX
+    vcloud_host: "{{ vcloud_host }}"
+    vcloud_username: "{{ vcloud_username }}"
+    vcloud_password: "{{ vcloud_password }}"
+    vcloud_org: "{{ vcloud_org | default('System') }}"
+
+    # Variables dinámicas desde Extra Vars
+    org_name: "{{ org_name }}"
+    full_name: "{{ full_name }}"
+
+  tasks:
+    - name: Validar conexión a vCloud
+      debug:
+        msg: 
+          - "Conectando al vCloud:"
+          - "Host: {{ vcloud_host }}"
+          - "Usuario: {{ vcloud_username }}"
+          - "Organización: {{ vcloud_org }}"
+
+    - name: Mostrar las variables de entrada para crear la organización
+      debug:
+        msg: 
+          - "Datos de la nueva organización:"
+          - "Nombre de la Organización: {{ org_name }}"
+          - "Nombre Completo: {{ full_name }}"
+
+    - name: Validar credenciales (ocultando la contraseña)
+      debug:
+        msg: 
+          - "Validación de credenciales:"
+          - "Host: {{ vcloud_host }}"
+          - "Usuario: {{ vcloud_username }}"
+          - "Contraseña: ****** (oculta)"
+
+    - name: Finalizar debug
+      debug:
+        msg: "El archivo YAML de debug se ejecutó correctamente."
+
