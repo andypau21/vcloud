@@ -1,0 +1,58 @@
+---
+- name: Crear organización en vCloud Director
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Configurar el entorno de pyvcloud
+      block:
+        - name: Establecer variables de entorno necesarias
+          ansible.builtin.set_fact:
+            env_vars:
+              VCD_HOST: "{{ vcloud_host }}"
+              VCD_USER: "{{ vcloud_user }}"
+              VCD_PASSWORD: "{{ vcloud_password }}"
+              VCD_ORG: "{{ vcloud_org }}"
+              VERIFY_SSL: "{{ vcloud_verify_ssl }}"
+            cacheable: true
+        
+        - name: Validar conexión a vCloud Director
+          community.general.shell:
+            cmd: |
+              source /path/to/venv/bin/activate &&
+              python3 -c "
+from pyvcloud.vcd.client import BasicLoginCredentials, Client;
+client = Client('{{ VCD_HOST }}', verify_ssl_certs={{ VERIFY_SSL }});
+client.set_credentials(BasicLoginCredentials('{{ VCD_USER }}', '{{ VCD_ORG }}', '{{ VCD_PASSWORD }}'));
+print('Conexión exitosa');
+client.logout();
+"
+          register: validation_output
+          failed_when: "'Conexión exitosa' not in validation_output.stdout"
+
+        - name: Crear organización en vCloud Director
+          community.general.shell:
+            cmd: |
+              source /path/to/venv/bin/activate &&
+              python3 -c "
+from pyvcloud.vcd.org import Org;
+from pyvcloud.vcd.client import BasicLoginCredentials, Client;
+client = Client('{{ VCD_HOST }}', verify_ssl_certs={{ VERIFY_SSL }});
+client.set_credentials(BasicLoginCredentials('{{ VCD_USER }}', '{{ VCD_ORG }}', '{{ VCD_PASSWORD }}'));
+org = Org(client, resource=client.get_org());
+org.create_org(
+  name='{{ org_name }}',
+  full_name='{{ full_name }}',
+  is_enabled=True
+);
+print('Organización creada exitosamente');
+client.logout();
+"
+          register: creation_output
+          failed_when: "'Organización creada exitosamente' not in creation_output.stdout"
+
+    - name: Mostrar resultados
+      debug:
+        msg:
+          - "Conexión: {{ validation_output.stdout }}"
+          - "Creación: {{ creation_output.stdout }}"
+
