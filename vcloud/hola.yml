@@ -1,9 +1,0 @@
----
-- name: Hola Mundo desde AWX
-  hosts: localhost
-  gather_facts: false
-  tasks:
-    - name: Mostrar un mensaje de prueba
-      debug:
-        msg: "¡Hola Mundo! Esto es una prueba desde AWX"
-

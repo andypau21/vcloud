@@ -1,8 +1,0 @@
----
-- name: create org
-  vcd_org:
-  org_name: "test_org"
-  full_name: "test_org"
-  is_enabled: "false"
-  state: "present"
-
