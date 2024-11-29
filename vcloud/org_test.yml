@@ -6,7 +6,7 @@
     - name: Establecer variables necesarias
       ansible.builtin.set_fact:
         vcloud_host: "{{ vcloud_host }}"
-        vcloud_user: "{{ vcloud_user }}"
+        vcloud_user: "{{ vcloud_username }}"
         vcloud_password: "{{ vcloud_password }}"
         vcloud_org: "{{ vcloud_org }}"
         vcloud_verify_ssl: "True"
