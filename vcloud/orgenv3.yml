@@ -1,7 +1,31 @@
 ---
-- name: create org
-  vcd_org:
-  org_name: "test_org"
-  full_name: "test_org"
-  is_enabled: "false"
-  state: "present"
+- name: Crear una organización en vCloud Director
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    vcd_hostname: "{{ vcloud_host }}"
+    vcd_username: "{{ vcloud_username }}"
+    vcd_password: "{{ vcloud_password }}"
+    vcd_org: "{{ vcloud_org }}"
+    vcd_verify_ssl: false
+    org_name: "MyOrganization"
+    org_full_name: "My Full Organization Name"
+    org_is_enabled: true
+    org_description: "This is a sample organization created via Ansible."
+
+  tasks:
+    - name: Crear organización en vCloud Director
+      vcd_org:
+        user: "{{ vcd_username }}"
+        password: "{{ vcd_password }}"
+        host: "{{ vcd_hostname }}"
+        org: "{{ vcd_org }}"
+        verify_ssl_certs: "{{ vcd_verify_ssl }}"
+        operation: create
+        name: "{{ org_name }}"
+        full_name: "{{ org_full_name }}"
+        is_enabled: "{{ org_is_enabled }}"
+        description: "{{ org_description }}"
+      delegate_to: localhost
+
