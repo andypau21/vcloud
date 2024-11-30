@@ -1,8 +1,19 @@
 ---
-- name: create org
-  vcd_org:
-  org_name: "test_org"
-  full_name: "test_org"
-  is_enabled: "false"
-  state: "present"
+- name: Create organization in vCloud Director
+  hosts: localhost
+  gather_facts: fase
 
+  tasks:
+    - name: Create organization
+      vcd_org:
+        user: "administrator"
+        password: "$D3c3Ui0d_VCD"
+        host: "https://cl1env3vcduiod1.umgt1.i.telconet.cloud/"
+        org: "System"
+        verify_ssl_certs: false
+        operation: create
+        name: "test_org"
+        full_name: "test_org"
+        is_enabled: true
+        state: present
+      delegate_to: localhost
