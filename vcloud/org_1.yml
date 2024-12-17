@@ -14,5 +14,4 @@
         org_name: "Organizacionatrujillo"
         full_name: "prueba2atrujillo"
         is_enabled: "true"
-        description: "prueba2descripcion"
       delegate_to: localhost
