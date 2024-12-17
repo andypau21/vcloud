@@ -10,7 +10,7 @@
         host: "https://cl1env3vcduiod1.umgt1.i.telconet.cloud/"
         org: "provider"
         verify_ssl_certs: "false"
-        operation: create
+        state: "present"
         org_name: "Organizacionatrujillo"
         full_name: "prueba2atrujillo"
         is_enabled: "true"
