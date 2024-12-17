@@ -11,7 +11,7 @@
         org: "provider"
         verify_ssl_certs: "false"
         operation: create
-        name: "Organizacionatrujillo"
+        org_name: "Organizacionatrujillo"
         full_name: "prueba2atrujillo"
         is_enabled: "true"
         description: "prueba2descripcion"
