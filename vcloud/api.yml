@@ -7,8 +7,6 @@
       uri:
         url: "https://cl1env3vcduiod1.umgt1.i.telconet.cloud/cloudapi/1.0.0/orgs"
         method: POST
-        user: "administrator@system"
-        password: "$D3c3Ui0d_VCD"
         body_format: json
         body:
           name: "Organizacionatrujillo"
@@ -17,6 +15,7 @@
           isEnabled: true
         headers:
           Accept: "application/json;version=39.0"
+          Authorization: "Bearer eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJhOTNjOWRiOS03NDcxLTMxOTItOGQwOS1hOGY3ZWVkYTg1ZjlAOTg2NTc3YWItMGQ3NS00NDMxLWI4YTctYTJjODhkMDAwNjQyIiwic3ViIjoiYWRtaW5pc3RyYXRvciIsImV4cCI6MTczNDU1Nzc3MiwidmVyc2lvbiI6InZjbG91ZF8xLjAiLCJqdGkiOiJlZWYwNjlkNWE1MjM0MGY4Yjc2MDYyZDIzYzI1NTA0ZSJ9.SdojNFIdWQQxoZgr9FDeHKJdgECnwVn0oIvTjaT5xzES5OW7DrXD2tIUhmsS9mMZ1n4OfZZNp-aT5EzZaNcn4HuziIHYu82Yzk-GduNpasIOVc55imXZS0Xbf55zixttxZkNfiT1ukJyE_sjKs4xdLQUf1o0uFN9pJUb73TeY5S0fXQJ1xQxUX8szf5-d-4p_k4Yf9TKLPke7Ma-qWUzYbunnEyhdXzqbVIbL02smWbBawtDv83a5Aug6AKBzYZMjkw0zfZviPFxhkrCNkbnzMJj268aAxMdWZIqtGvcvbNfCi8jQNmWSrgAlTDuu304Ue0KIcNI1C4Yg44-pwtU6A"
           Content-Type: "application/json"
         validate_certs: false
       register: response
