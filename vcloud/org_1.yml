@@ -7,8 +7,8 @@
       vcd_org:
         user: "administrator"
         password: "$D3c3Ui0d_VCD"
-        host: "https://cl1env3vcduiod1.umgt1.i.telconet.cloud/provider/"
-        org: ""
+        host: "https://cl1env3vcduiod1.umgt1.i.telconet.cloud"
+        org: "provider"
         verify_ssl_certs: "false"
         state: "present"
         org_name: "Organizacionatrujillo"
