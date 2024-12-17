@@ -1,0 +1,26 @@
+---
+- name: Crear una organización en vCloud Director
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Crear organización en vCloud Director API
+      uri:
+        url: "https://cl1env3vcduiod1.umgt1.i.telconet.cloud/cloudapi/1.0.0/orgs"
+        method: POST
+        user: "administrator@system"
+        password: "$D3c3Ui0d_VCD"
+        body_format: json
+        body:
+          name: "Organizacionatrujillo"
+          fullName: "prueba2atrujillo"
+          description: "prueba2descripcion"
+          isEnabled: true
+        headers:
+          Accept: "application/json;version=39.0"
+          Content-Type: "application/json"
+        validate_certs: false
+      register: response
+
+    - name: Mostrar respuesta de la API
+      debug:
+        msg: "{{ response }}"
