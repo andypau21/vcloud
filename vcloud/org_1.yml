@@ -1,0 +1,18 @@
+---
+- name: Crear una organización en vCloud Director
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Crear organización en vCloud Director
+      vcd_org:
+        user: "administrator"
+        password: "$D3c3Ui0d_VCD"
+        host: "https://cl1env3vcduiod1.umgt1.i.telconet.cloud/"
+        org: "provider"
+        verify_ssl_certs: "false"
+        operation: create
+        name: "Organizacionatrujillo"
+        full_name: "prueba2atrujillo"
+        is_enabled: "true"
+        description: "prueba2descripcion"
+      delegate_to: localhost
