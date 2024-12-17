@@ -7,7 +7,7 @@
       vcd_org:
         user: "administrator"
         password: "$D3c3Ui0d_VCD"
-        host: "https://cl1env3vcduiod1.umgt1.i.telconet.cloud"
+        host: "https://cl1env3vcduiod1.umgt1.i.telconet.cloud/login"
         org: "provider"
         verify_ssl_certs: "false"
         state: "present"
