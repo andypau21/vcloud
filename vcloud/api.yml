@@ -10,7 +10,7 @@
         body_format: json
         body:
           name: "Organizacionatrujillo"
-          fullName: "prueba2atrujillo"
+          displayName: "prueba2atrujillo"
           description: "prueba2descripcion"
           isEnabled: true
         headers:
