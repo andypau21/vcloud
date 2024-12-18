@@ -11,7 +11,7 @@
         org: "provider"
         verify_ssl_certs: "false"
         state: "present"
-        org_name: "Organizacionatrujillo"
-        full_name: "prueba2atrujillo"
+        org_name: "vcdOrganizacionatrujillo"
+        full_name: "vcdprueba2atrujillo"
         is_enabled: "true"
       delegate_to: localhost
