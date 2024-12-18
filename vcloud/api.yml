@@ -9,8 +9,8 @@
         method: POST
         body_format: json
         body:
-          name: "Organizacionatrujillo"
-          displayName: "prueba2atrujillo"
+          name: "Organizacionrvilela"
+          displayName: "pruebarvilela"
           description: "prueba2descripcion"
           isEnabled: true
         headers:
@@ -23,3 +23,9 @@
     - name: Mostrar respuesta de la API
       debug:
         msg: "{{ response }}"
+
+    - name: Validar si la organización se creó correctamente
+      assert:
+        that:
+          - response.status == 201
+        msg: "La organización no se creó correctamente. Código de estado: {{ response.status }}"
