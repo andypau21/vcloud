@@ -5,13 +5,13 @@
   tasks:
     - name: Crear organización en vCloud Director API
       uri:
-        url: "https://172.30.164.36/cloudapi/1.0.0/orgs"
+        url: "https://cl1env3vcduiod1.umgt1.i.telconet.cloud/cloudapi/1.0.0/orgs"
         method: POST
         body_format: json
         body:
-          name: "Organizacionrvilela"
-          displayName: "pruebarvilela"
-          description: "prueba2descripcion"
+          name: "Organizacionurl"
+          displayName: "pruebaurl"
+          description: "prueba2descripcionurl"
           isEnabled: true
         headers:
           Accept: "application/json;version=39.0"
