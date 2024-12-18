@@ -1,34 +1,35 @@
 ---
-- name: Create vCloud Director Session and Store Response
+- name: Get vCloud Director Access Token
   hosts: localhost
   gather_facts: no
   vars:
     vcloud_url: "https://172.30.164.36/cloudapi/1.0.0/sessions/provider"
-    auth_header: "Basic YWRtaW5pc3RyYXRvckBzeXN0ZW06JEQzYzNVaTBkX1ZDRA=="
+    vcloud_username: "administrator@system"
+    vcloud_password: "$D3c3Ui0d_VCD"  # Reemplaza con tu contraseña
+
   tasks:
-    - name: Create vCloud Director session
+    - name: Authenticate and get access token
       uri:
         url: "{{ vcloud_url }}"
         method: POST
         headers:
           Accept: "application/json;version=39.0"
-          Authorization: "{{ auth_header }}"
+          Authorization: "Basic {{ vcloud_username | b64encode }}"
         return_content: yes
         status_code: 200
         body_format: json
         follow_redirects: all
         validate_certs: no
-        headers_mode: merge
-      register: vcloud_session_response
+      register: vcloud_auth_response
 
-    - name: Debug session response
+    - name: Debug response headers
       debug:
-        var: vcloud_session_response
+        var: vcloud_auth_response.headers
 
-    - name: Store session response in a variable
+    - name: Extract access token from headers
       set_fact:
-        vcloud_session_data: "{{ vcloud_session_response.json }}"
+        vcloud_access_token: "{{ vcloud_auth_response.headers['X-VMWARE-VCLOUD-ACCESS-TOKEN'] }}"
 
-    - name: Debug stored session data
+    - name: Debug access token
       debug:
-        var: vcloud_session_data
+        var: vcloud_access_token
