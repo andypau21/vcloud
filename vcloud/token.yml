@@ -5,6 +5,7 @@
   vars:
     vcloud_url: "https://172.30.164.36/cloudapi/1.0.0/sessions/provider"
     auth_header: "Basic YWRtaW5pc3RyYXRvckBzeXN0ZW06JEQzYzNVaTBkX1ZDRA=="
+
   tasks:
     - name: Authenticate and get access token
       uri:
@@ -20,6 +21,10 @@
         validate_certs: no
       register: vcloud_auth_response
 
+    - name: Debug full response
+      debug:
+        var: vcloud_auth_response
+
     - name: Debug response headers
       debug:
         var: vcloud_auth_response.headers
@@ -27,7 +32,9 @@
     - name: Extract access token from headers
       set_fact:
         vcloud_access_token: "{{ vcloud_auth_response.headers['X-VMWARE-VCLOUD-ACCESS-TOKEN'] }}"
+      when: vcloud_auth_response.status == 200 and vcloud_auth_response.headers is defined
 
     - name: Debug access token
       debug:
         var: vcloud_access_token
+      when: vcloud_access_token is defined
