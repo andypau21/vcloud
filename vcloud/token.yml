@@ -1,0 +1,34 @@
+---
+- name: Create vCloud Director Session and Store Response
+  hosts: localhost
+  gather_facts: no
+  vars:
+    vcloud_url: "https://172.30.164.36/cloudapi/1.0.0/sessions/provider"
+    auth_header: "Basic YWRtaW5pc3RyYXRvckBzeXN0ZW06JEQzYzNVaTBkX1ZDRA=="
+  tasks:
+    - name: Create vCloud Director session
+      uri:
+        url: "{{ vcloud_url }}"
+        method: POST
+        headers:
+          Accept: "application/json;version=39.0"
+          Authorization: "{{ auth_header }}"
+        return_content: yes
+        status_code: 200
+        body_format: json
+        follow_redirects: all
+        validate_certs: no
+        headers_mode: merge
+      register: vcloud_session_response
+
+    - name: Debug session response
+      debug:
+        var: vcloud_session_response
+
+    - name: Store session response in a variable
+      set_fact:
+        vcloud_session_data: "{{ vcloud_session_response.json }}"
+
+    - name: Debug stored session data
+      debug:
+        var: vcloud_session_data
