@@ -8,7 +8,7 @@
         user: "administrator"
         password: "$D3c3Ui0d_VCD"
         host: "https://172.30.164.36/login/"
-        org: "provider"
+        org: "system"
         verify_ssl_certs: "false"
         state: "present"
         org_name: "vcdOrganizacionatrujillo"
